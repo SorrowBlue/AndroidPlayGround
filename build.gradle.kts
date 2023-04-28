@@ -12,10 +12,7 @@ subprojects {
 
     afterEvaluate {
         extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension>("kotlin") {
-            jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(11))
-                vendor.set(JvmVendorSpec.ADOPTOPENJDK)
-            }
+            jvmToolchain(17)
         }
 
         configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
