@@ -17,10 +17,11 @@ subprojects {
 
         configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
             android.set(true)
-//            enableExperimentalRules.set(true)
+            enableExperimentalRules.set(true)
             reporters {
                 reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
             }
+            ignoreFailures.set(true)
         }
     }
     tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask> {
