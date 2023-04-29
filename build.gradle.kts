@@ -4,8 +4,34 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.2" apply false
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    afterEvaluate {
+        extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension>("kotlin") {
+            jvmToolchain(17)
+        }
+
+        configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+            android.set(true)
+            enableExperimentalRules.set(true)
+            reporters {
+                reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+            }
+            ignoreFailures.set(true)
+        }
+    }
+    tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask> {
+        reportsOutputDirectory.set(
+            project.layout.buildDirectory.dir("reports")
+        )
+    }
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "11"
+        }
+    }
 }

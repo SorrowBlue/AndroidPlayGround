@@ -1,0 +1,7 @@
+root = true
+
+[*.{kt,kts}]
+# ktlint_standard = android # Disable all rules from the `standard` rule set provided by KtLint
+# ktlint_experimental = enabled # Enable all rules from the `experimental` rule set provided by KtLint
+# ktlint_custom-rule-set = enabled # Enable all rules in the `custom-rule-set` rule set (not provided by KtLint)
+max_line_length = off
