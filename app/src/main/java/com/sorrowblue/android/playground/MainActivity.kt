@@ -27,9 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-            if (true) {
-            // aaa
-            /* a */
+        if (true) {
+
         }
 
         val navController =
