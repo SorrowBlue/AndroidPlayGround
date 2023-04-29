@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 .setAnchorView(R.id.fab)
                 .setAction("Action", null).show()
         }
+        navController.navigate(R.id.composeActivity)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
