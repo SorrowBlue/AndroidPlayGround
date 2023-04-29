@@ -1,7 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":compose")
-
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
@@ -32,3 +31,4 @@ extensions.configure<com.android.build.api.dsl.SettingsExtension> {
 
 rootProject.name = "AndroidPlayGround"
 include(":app")
+include(":compose")
