@@ -13,6 +13,9 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 17
+      - uses: gradle/gradle-build-action@v2
+        env:
+          GRADLE_BUILD_ACTION_CACHE_KEY_PREFIX: ${{ runner.os }}-gradle-build-${{ github.workflow }}-${{ steps.cache-key.outputs.week }}-
 
   build:
     needs: setup
@@ -25,7 +28,11 @@ jobs:
           distribution: 'adopt'
           java-version: 17
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assembleDebug
+        env:
+          GRADLE_BUILD_ACTION_CACHE_KEY_PREFIX: ${{ runner.os }}-gradle-build-${{ github.workflow }}-${{ steps.cache-key.outputs.week }}-
 
   danger:
     needs: setup
@@ -42,9 +49,17 @@ jobs:
           distribution: 'adopt'
           java-version: 17
       - name: Run ktlintCheck
-        run: ./gradlew ktlintCheck
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ktlintCheck
+        env:
+          GRADLE_BUILD_ACTION_CACHE_KEY_PREFIX: ${{ runner.os }}-gradle-build-${{ github.workflow }}-${{ steps.cache-key.outputs.week }}-
       - name: Run androidLint
-        run: ./gradlew lintDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: lintDebug
+        env:
+          GRADLE_BUILD_ACTION_CACHE_KEY_PREFIX: ${{ runner.os }}-gradle-build-${{ github.workflow }}-${{ steps.cache-key.outputs.week }}-
       - uses: MeilCli/danger-action@v5
         with:
           plugins_file: 'Gemfile'
