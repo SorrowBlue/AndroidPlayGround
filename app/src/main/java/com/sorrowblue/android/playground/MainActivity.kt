@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        if (true) {
-
-        }
-
         val navController =
             binding.contentMain.navHostFragmentContentMain.getFragment<NavHostFragment>().navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
