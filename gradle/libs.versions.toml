@@ -11,6 +11,7 @@ androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
+androidx-paging-compose = "androidx.paging:paging-compose:1.0.0-alpha18"
 
 google-android-material = "com.google.android.material:material:1.8.0"
 junit = "junit:junit:4.13.2"
