@@ -68,14 +68,11 @@ fun PokeVersionListScreen(api: PokeApi, action: () -> Unit) {
                 val version = sample?.first
                 val versionGroup = sample?.second
                 ListItem(
-                    headlineText = {
-                        Text(
-                            version?.names?.japanease ?: version?.name ?: ""
-                        )
-                    },
+                    headlineText = { Text(version?.names?.japanease ?: version?.name ?: "") },
                     supportingText = { Text(versionGroup?.name ?: "") },
                     trailingContent = { Icon(Icons.Default.KeyboardArrowRight, "") },
-                    modifier = Modifier.clickable { action.invoke() })
+                    modifier = Modifier.clickable { action.invoke() }
+                )
                 Divider()
             }
         }

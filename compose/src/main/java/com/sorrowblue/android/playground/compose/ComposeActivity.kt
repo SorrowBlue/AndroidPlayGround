@@ -33,9 +33,11 @@ class ComposeActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "PokeVersionList") {
-                        composable("PokeVersionList") { PokeVersionListScreen(api) {
-                            navController.navigate("RegionList")
-                        } }
+                        composable("PokeVersionList") {
+                            PokeVersionListScreen(api) {
+                                navController.navigate("RegionList")
+                            }
+                        }
                         composable("RegionList") { PokeRegionListScreen(api) }
                     }
                 }

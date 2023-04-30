@@ -15,18 +15,12 @@ class PokeVersionPagingSource(private val api: PokeApi) : PagingSource<Int, Poke
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PokeVersion> {
         val result = api.get(Version(params.loadSize, params.key ?: 0))
-        Log.d(
-            "TAG", "key=${params.key}, next=${
-                "offset=([0-9]+)".toRegex()
-                    .find(result.next.toString())?.value?.toIntOrNull()
-            }"
-        )
+        Log.d("TAG", "key=${params.key}, next=${result.nextOffset}")
 
         return LoadResult.Page(
             result.results,
             prevKey = null,
-            nextKey = Regex("offset=([0-9]+)").find(result.next.toString())
-                ?.groups?.get(1)?.value?.toIntOrNull()
+            nextKey = result.nextOffset
         )
     }
 }
